@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academia Ele &amp; Ela</title>
+<meta name="description" content="Academia Ele & Ela, na Ilha de Guaratiba: do salão à areia da praia, você treina com gente do bairro.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Academia Ele & Ela · Treine junto. Evolua junto.">
+<meta property="og:description" content="Na Ilha de Guaratiba, do salão à areia da praia: você treina com gente do bairro.">
+<meta property="og:url" content="https://lucasalmeida151704.github.io/academia-ele-e-ela/">
+<meta property="og:image" content="https://lucasalmeida151704.github.io/academia-ele-e-ela/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#091423">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#050b13">
+<link rel="icon" type="image/png" href="assets/simbolo-80.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Saira:ital,wdth,wght@1,100..125,600..800&display=swap">
+<script>
+  document.documentElement.classList.add('js');
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
+</script>
+<style>
+  :root {
+    color-scheme: dark;
+    /* Tokens do design system Academia Ele & Ela */
+    --palco: #091423;
+    --on-palco: #ffffff;
+    --palco-muted: #b9c6d4;
+    --ele: #2a8abc;
+    --ele-profundo: #1b5c9c;
+    --ele-soft: #e3f0f8;
+    --ela: #bc246d;
+    --ela-rosa: #ce5f92;
+    --ela-ink: #a01e5d;
+    --on-ela: #ffffff;
+    --surface: #ffffff;
+    --surface-alt: #f3f7fb;
+    --line: #dce5ee;
+    --ink: #13243a;
+    --ink-muted: #4e6176;
+    --focus: #1b5c9c;
+    --tag-ele: #1b5c9c; /* fundo de etiqueta com texto branco: fixo nos dois temas (6,9:1) */
+    --shadow-cta: 0 8px 24px rgba(0, 0, 0, 0.45); /* valor do tema escuro: o CTA só aparece sobre o palco */
+
+    --font-display: Saira, "Arial Black", Arial, sans-serif;
+    --font-texto: Barlow, "Segoe UI", Arial, sans-serif;
+
+    --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px;
+    --space-8: 32px; --space-12: 48px; --space-16: 64px; --space-24: 96px;
+    --radius-sm: 4px; --radius-md: 8px; --radius-lg: 16px;
+
+    --slant: -10deg;
+    --gutter: max(clamp(16px, 5vw, 80px), calc((100vw - 1320px) / 2));
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+    --ease-rise: cubic-bezier(.2, .7, .2, 1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --palco: #050b13; --ele: #4fa6d8; --ela-rosa: #e86fa3;
+      --ele-profundo: #7dbde6; --ele-soft: #10304a; --ela-ink: #f08db8;
+      --surface: #0c1622; --surface-alt: #122133; --line: #23374d; --ink: #eef3f8; --ink-muted: #a5b4c4; --focus: #7dbde6;
+    }
+  }
+  :root[data-theme="dark"] {
+    --palco: #050b13; --ele: #4fa6d8; --ela-rosa: #e86fa3;
+    --ele-profundo: #7dbde6; --ele-soft: #10304a; --ela-ink: #f08db8;
+    --surface: #0c1622; --surface-alt: #122133; --line: #23374d; --ink: #eef3f8; --ink-muted: #a5b4c4; --focus: #7dbde6;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: var(--palco); scrollbar-color: var(--ele-profundo) var(--palco); }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body {
+    margin: 0;
+    background: var(--palco);
+    color: var(--on-palco);
+    font-family: var(--font-texto);
+    font-size: 16px;
+    line-height: 26px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--ela); color: var(--on-ela); }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--on-palco); outline-offset: 3px; }
+  section[id] { scroll-margin-top: var(--space-6); }
+
+  .display {
+    font-family: var(--font-display);
+    font-stretch: 125%;
+    font-style: italic;
+    text-transform: uppercase;
+  }
+  .etiqueta {
+    font-family: var(--font-display); font-stretch: 125%; font-style: italic;
+    font-weight: 700; font-size: 13px; line-height: 16px; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .icon { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
+
+  /* ---------- Botões (Button do design system) ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 56px; padding: 0 var(--space-8);
+    font-family: var(--font-texto); font-weight: 700; font-size: 18px; line-height: 20px; letter-spacing: 0.02em;
+    text-decoration: none; white-space: nowrap;
+    border: 2px solid transparent; border-radius: var(--radius-sm);
+    transform: skewX(var(--slant));
+    transition: transform .2s var(--ease-out), background-color .2s ease, box-shadow .2s ease;
+  }
+  .btn__label { display: inline-flex; align-items: center; gap: var(--space-2); transform: skewX(10deg); }
+  .btn--primary { background: var(--ela); color: var(--on-ela); box-shadow: var(--shadow-cta); }
+  .btn--primary:hover { transform: skewX(var(--slant)) translateY(-2px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55); }
+  .btn--primary:active { transform: skewX(var(--slant)) translateY(0); box-shadow: var(--shadow-cta); }
+  .btn--inverse { background: transparent; border-color: var(--on-palco); color: var(--on-palco); }
+  .btn--inverse:hover { background: rgba(255, 255, 255, 0.08); }
+  .btn--inverse:active { background: rgba(255, 255, 255, 0.14); }
+  .btn--secondary { height: 48px; padding: 0 var(--space-6); font-size: 16px; background: transparent; border-color: var(--ele-profundo); color: var(--ele-profundo); }
+  .btn--secondary:hover { background: var(--ele-soft); }
+  .btn--secondary:focus-visible { outline-color: var(--focus); }
+  @media (prefers-reduced-motion: reduce) {
+    .btn { transition: none; }
+    .btn--primary:hover { transform: skewX(var(--slant)); }
+  }
+
+  /* ---------- Header ---------- */
+  .top {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-4) var(--gutter);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .brand { display: flex; align-items: center; gap: var(--space-3); min-height: 44px; text-decoration: none; border-radius: var(--radius-sm); }
+  .brand img { height: 40px; width: auto; }
+  .brand__name {
+    display: flex; flex-direction: column;
+    font-family: var(--font-display); font-stretch: 125%; font-style: italic;
+    font-weight: 600; font-size: 12px; line-height: 14px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ela-rosa);
+  }
+  .brand__name b { font-weight: 800; font-size: 18px; line-height: 20px; letter-spacing: 0; color: var(--on-palco); }
+  .nav { display: flex; gap: var(--space-8); margin-left: auto; }
+  .nav a {
+    font-weight: 600; font-size: 15px; line-height: 20px;
+    color: var(--palco-muted); text-decoration: none;
+    padding: var(--space-3) 0; border-radius: var(--radius-sm);
+    transition: color .2s ease;
+  }
+  .nav a:hover { color: var(--on-palco); }
+  @media (prefers-reduced-motion: reduce) { .nav a { transition: none; } }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    display: grid;
+    /* Texto com largura mínima para os dois botões caberem numa linha; a arte cresce com o resto */
+    grid-template-columns: minmax(510px, 1fr) minmax(0, 1fr);
+    column-gap: var(--space-8);
+    align-items: center;
+    min-height: min(calc(100svh - 73px), 940px);
+    padding: var(--space-16) var(--gutter);
+    overflow: clip;
+  }
+  .hero__text { grid-column: 1; grid-row: 1; position: relative; z-index: 2; }
+  .hero__art { grid-column: 2; grid-row: 1; }
+
+  h1 {
+    margin: 0;
+    font-weight: 800;
+    font-size: clamp(44px, 4.6vw, 64px); /* token hero do design system: 64px */
+    line-height: 0.94;
+    letter-spacing: -0.01em;
+    color: var(--on-palco);
+  }
+  h1 span { display: block; }
+  h1 em { font-style: inherit; }
+  .c-ele { color: var(--ele); }
+  .c-ela { color: var(--ela-rosa); }
+
+  .lead {
+    margin: var(--space-8) 0 0;
+    max-width: 42ch;
+    font-size: clamp(18px, 1.39vw, 20px); line-height: 1.5;
+    color: var(--palco-muted);
+    text-wrap: pretty;
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+  .nudge { margin: var(--space-3) 0 0; font-size: 14px; line-height: 20px; color: var(--palco-muted); }
+
+  .info {
+    display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6);
+    margin: var(--space-12) 0 0; padding: 0; list-style: none;
+    font-size: 14px; line-height: 20px; font-weight: 500;
+    color: var(--palco-muted);
+  }
+  .info li { display: flex; align-items: flex-start; gap: var(--space-2); }
+  .info .icon { width: 18px; height: 18px; color: var(--ele); margin-top: 1px; }
+  .info li + li .icon { color: var(--ela-rosa); }
+  .info a { display: inline-block; padding: 2px 0; margin: -2px 0; min-height: 24px; text-decoration: underline; text-decoration-color: rgba(185, 198, 212, 0.5); text-underline-offset: 3px; border-radius: 2px; }
+  .info a:hover { color: var(--on-palco); text-decoration-color: currentColor; }
+
+  /* ---------- Arte: duas faixas entrelaçadas ----------
+     A faixa magenta passa por cima da azul, com o respiro do palco em volta.
+     Medidas em cqw (largura da arte), para escalar igual em qualquer tela. */
+  .art {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    margin-left: auto;
+    aspect-ratio: 100 / 92;
+    container-type: inline-size;
+    --px: 0; --py: 0;
+    --frame: 1.8cqw;
+    --gap: 1.3cqw;
+  }
+  .slab {
+    position: absolute;
+    transform: translate(calc(var(--depth, 0) * var(--px) * 1cqw), calc(var(--depth, 0) * var(--py) * 1cqw));
+  }
+  .slab__in {
+    position: absolute; inset: 0; margin: 0;
+    transform: skewX(var(--slant));
+    border-radius: calc(var(--radius-lg) + var(--frame));
+    outline: var(--gap) solid var(--palco);
+  }
+  .slab--photo .slab__in { padding: var(--frame); }
+  .slab__photo {
+    position: relative; width: 100%; height: 100%;
+    overflow: hidden; border-radius: var(--radius-lg);
+    background: var(--palco);
+  }
+  .slab__photo img {
+    position: absolute; top: 0; left: -22%;
+    width: 144%; max-width: none; height: 100%;
+    object-fit: cover;
+    transform: skewX(10deg) translate(calc(var(--pan) * var(--px) * 1cqw), calc(var(--pan) * var(--py) * 0.8cqw)) scale(1.06);
+  }
+  .slab__tag {
+    position: absolute;
+    font-family: var(--font-display); font-stretch: 125%; font-style: italic;
+    font-weight: 700; font-size: max(12px, 2.1cqw); line-height: 1; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #fff;
+    padding: 1.2cqw 1.8cqw;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Arte pequena (celular): as etiquetas não cabem; o lead já diz "do salão à areia" */
+  @container (max-width: 300px) { .slab__tag { display: none; } }
+
+  /* Ele: azul, o salão */
+  .slab--ele { left: 9%; top: 0; width: 45%; height: 76cqw; z-index: 1; --depth: -0.5; --pan: -1.4; }
+  .slab--ele .slab__in { background: var(--ele); }
+  .slab--ele .slab__photo img { object-position: 46% 40%; }
+  .slab--ele .slab__tag { left: 3.4cqw; bottom: 3.8cqw; background: var(--tag-ele); }
+
+  /* Ela: magenta, a areia. Fica inteira por cima da azul, moldura incluída. */
+  .slab--ela { left: 37%; top: 33cqw; width: 58%; height: 50cqw; z-index: 2; --depth: 0.6; --pan: 1.4; }
+  .slab--ela .slab__in { background: var(--ela); }
+  .slab--ela .slab__photo img { object-position: 50% 45%; }
+  .slab--ela .slab__tag { right: 3.8cqw; top: 3.4cqw; background: var(--ela); }
+
+
+  /* Lâminas de cor presas às faixas, como na capa do design system */
+  .slab--rosa { left: 81%; top: 25cqw; width: 10%; height: 24cqw; z-index: 0; --depth: 0.9; }
+  .slab--rosa .slab__in { background: var(--ela-rosa); outline: none; border-radius: var(--radius-sm); }
+  .slab--deep { left: 1%; top: 58cqw; width: 15%; height: 30cqw; z-index: 0; --depth: -1; }
+  .slab--deep .slab__in { background: var(--tag-ele); outline: none; border-radius: var(--radius-sm); }
+
+  /* ---------- Turmas: prévia da próxima seção ---------- */
+  .turmas {
+    background: var(--surface);
+    color: var(--ink);
+    padding: var(--space-24) var(--gutter);
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-6);
+    align-items: center;
+    overflow: clip;
+    border-block: 1px solid var(--line);
+  }
+  .turmas ::selection { background: var(--ela); color: var(--on-ela); }
+  .turmas :focus-visible { outline-color: var(--focus); }
+  .turmas__art { grid-column: 1 / span 5; }
+  .turmas__text { grid-column: 7 / span 6; }
+  .trail {
+    position: relative;
+    aspect-ratio: 4 / 3.3;
+    margin: 0 4% 0 6%;
+    transform: skewX(var(--slant));
+    background: var(--ela);
+    padding: 10px;
+    border-radius: calc(var(--radius-lg) + 10px);
+  }
+  .trail__photo { width: 100%; height: 100%; overflow: hidden; border-radius: var(--radius-lg); }
+  .trail__photo img { width: 140%; max-width: none; height: 100%; margin-left: -20%; object-fit: cover; object-position: 50% 60%; transform: skewX(10deg); }
+  .trail figcaption { position: absolute; left: 22px; bottom: 22px; padding: 6px 10px; border-radius: var(--radius-sm); background: var(--tag-ele); color: #fff; }
+  .trail figcaption span { display: inline-block; transform: skewX(10deg); }
+  .trail::after {
+    content: ""; position: absolute; right: -9%; top: 12%; width: 9%; height: 46%;
+    background: var(--ele); border-radius: var(--radius-sm); z-index: -1;
+  }
+  h2 {
+    margin: 0;
+    font-weight: 800; font-size: clamp(32px, 3.4vw, 40px); line-height: 1.08;
+  }
+  .turmas h2 .c-ele { color: var(--ele); }
+  .turmas p { margin: var(--space-6) 0 0; max-width: 46ch; font-size: 18px; line-height: 28px; color: var(--ink-muted); text-wrap: pretty; }
+  .turmas .btn { margin-top: var(--space-8); }
+
+  /* ---------- Contato: fechamento da página ---------- */
+  .fecho { padding: var(--space-24) var(--gutter); }
+  .fecho__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(520px, 7fr); column-gap: var(--space-12); align-items: start; }
+  .fecho__head { grid-column: 1; }
+  .fecho h2 { color: var(--on-palco); font-size: clamp(36px, 4vw, 52px); line-height: 1; }
+  .fecho h2 .c-ela { color: var(--ela-rosa); }
+  .fecho__mark { height: 120px; width: auto; margin-top: var(--space-12); }
+  .fecho__body { grid-column: 2; }
+  .rows { margin: 0; }
+  .row { display: grid; grid-template-columns: 13rem 1fr; gap: var(--space-4); padding: var(--space-4) 0; border-top: 1px solid rgba(255, 255, 255, 0.12); scroll-margin-top: var(--space-16); }
+  .row:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+  .row dt { color: var(--ela-rosa); padding-top: 4px; }
+  .row:nth-child(2n) dt { color: var(--ele); }
+  .row dd { margin: 0; color: var(--palco-muted); }
+  .row dd a { color: var(--on-palco); text-underline-offset: 3px; }
+  .row__link { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; font-weight: 600; text-decoration: underline; text-decoration-color: var(--ela-rosa); text-decoration-thickness: 2px; }
+  .row__link:hover { text-decoration-color: currentColor; }
+  .row__link .icon { width: 18px; height: 18px; color: var(--ela-rosa); }
+  .fecho .actions { margin-top: var(--space-8); }
+  .rodape {
+    padding: var(--space-6) var(--gutter) var(--space-8);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2) var(--space-6);
+    font-size: 13px; line-height: 18px; font-weight: 500; color: var(--palco-muted);
+  }
+
+  /* ---------- Movimento: o encaixe ---------- */
+  .motion .top { animation: fade .7s var(--ease-rise) both; }
+  .motion .rise { animation: rise .9s var(--ease-rise) both; animation-delay: var(--d, 0ms); }
+  .motion .slab--ele .slab__in { animation: in-ele 1.05s var(--ease-out) .15s both; }
+  .motion .slab--ela .slab__in { animation: in-ela 1.05s var(--ease-out) .3s both; }
+  .motion .slab--deep .slab__in { animation: in-ele .8s var(--ease-out) .55s both; }
+  .motion .slab--rosa .slab__in { animation: in-ela .8s var(--ease-out) .65s both; }
+  .motion .slab__tag { animation: fade .5s ease 1.25s both; }
+  /* O encaixe: quando a magenta pousa sobre a azul, a arte assenta 3px */
+  .motion .art { animation: settle .42s var(--ease-out) 1.08s both; }
+
+  @keyframes fade { from { opacity: 0; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } }
+  @keyframes settle { 30% { transform: translateY(3px); } }
+  @keyframes in-ele {
+    from { opacity: 0; transform: translate(5cqw, -28cqw) skewX(var(--slant)); clip-path: inset(-3cqw -3cqw 100% -3cqw); }
+    to   { transform: translate(0, 0) skewX(var(--slant)); clip-path: inset(-3cqw); }
+  }
+  @keyframes in-ela {
+    from { opacity: 0; transform: translate(-5cqw, 28cqw) skewX(var(--slant)); clip-path: inset(100% -3cqw -3cqw -3cqw); }
+    to   { transform: translate(0, 0) skewX(var(--slant)); clip-path: inset(-3cqw); }
+  }
+
+  /* ---------- Responsivo ---------- */
+  @media (min-width: 1600px) {
+    .hero__art .art { max-width: 720px; }
+  }
+  @media (max-width: 980px) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr);
+      align-content: start;
+      row-gap: var(--space-6);
+      min-height: 0;
+      padding: var(--space-4) var(--gutter) var(--space-16);
+    }
+    .hero__art { grid-column: 1; grid-row: 1; }
+    .hero__text { grid-column: 1; grid-row: 2; }
+    /* A arte encolhe pela altura da tela para o botão do WhatsApp caber na primeira dobra */
+    .hero__art .art { width: min(100%, calc(34svh * 100 / 92)); max-width: 520px; margin: 0 auto; }
+    h1 { font-size: clamp(30px, 10.2vw, 46px); }
+    .lead { margin-top: var(--space-4); }
+    .actions { margin-top: var(--space-6); }
+    .info { margin-top: var(--space-8); }
+
+    .turmas { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-12); padding: var(--space-16) var(--gutter); }
+    .turmas__art, .turmas__text { grid-column: 1; }
+    .turmas__art { max-width: 520px; width: 100%; justify-self: center; }
+    .trail { margin: 0 12% 0 4%; }
+    .fecho { padding: var(--space-16) var(--gutter); }
+    .fecho__grid { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-8); }
+    .fecho__head, .fecho__body { grid-column: 1; }
+    .fecho__mark { display: none; }
+  }
+  @media (max-width: 900px) {
+    .top { gap: var(--space-4); flex-wrap: wrap; padding-top: var(--space-3); padding-bottom: var(--space-3); }
+    .nav { gap: var(--space-4); }
+  }
+  /* Celulares muito estreitos: os dois links não cabem ao lado da assinatura e empurrariam o WhatsApp para fora da tela */
+  @media (max-width: 358px) { .nav { display: none; } }
+  @media (max-width: 520px) {
+    .actions { flex-direction: column; align-items: stretch; padding: 0 var(--space-2); }
+    .info { flex-direction: column; }
+    .row { grid-template-columns: 1fr; gap: var(--space-1); }
+    .turmas .btn { width: calc(100% - var(--space-4)); margin-left: var(--space-2); }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#inicio" aria-label="Academia Ele &amp; Ela, início">
+    <img src="assets/simbolo-80.png" alt="" width="28" height="40">
+    <span class="brand__name">Academia <b>Ele &amp; Ela</b></span>
+  </a>
+  <nav class="nav" aria-label="Principal">
+    <a href="#turmas">Fora do salão</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="inicio" aria-labelledby="titulo">
+    <div class="hero__text">
+      <h1 id="titulo" class="display">
+        <span class="rise" style="--d:60ms">Treine <em class="c-ele">junto.</em></span>
+        <span class="rise" style="--d:140ms">Evolua <em class="c-ela">junto.</em></span>
+      </h1>
+      <p class="lead rise" style="--d:220ms">Na Ilha de Guaratiba, do salão à areia da praia: você treina com gente do bairro, no seu ritmo.</p>
+      <div class="actions rise" style="--d:280ms">
+        <a class="btn btn--primary" href="https://wa.me/5521983196046?text=Oi%2C%20vim%20pelo%20site%20e%20quero%20conhecer%20a%20Ele%20%26%20Ela." target="_blank" rel="noopener">
+          <span class="btn__label">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+            Chamar no WhatsApp
+          </span>
+        <span class="sr-only"> (abre em nova aba)</span></a>
+        <a class="btn btn--inverse" href="https://www.google.com/maps/search/?api=1&amp;query=Estrada+Teodoreto+de+Camargo%2C+397%2C+Ilha+de+Guaratiba%2C+Rio+de+Janeiro" target="_blank" rel="noopener">
+          <span class="btn__label">Ver como chegar</span>
+        <span class="sr-only"> (abre em nova aba)</span></a>
+      </div>
+      <p class="nudge rise" style="--d:340ms">Horários e planos? Pergunte pelo WhatsApp.</p>
+      <ul class="info rise" style="--d:400ms">
+        <li>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Estrada Teodoreto de Camargo, 397<br>Ilha de Guaratiba, Rio de Janeiro</span>
+        </li>
+        <li>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          <a href="tel:+5521983196046">(21) 98319-6046</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero__art">
+      <div class="art" id="art">
+        <div class="slab slab--rosa" aria-hidden="true"><div class="slab__in"></div></div>
+        <div class="slab slab--deep" aria-hidden="true"><div class="slab__in"></div></div>
+
+        <div class="slab slab--photo slab--ele">
+          <figure class="slab__in">
+            <div class="slab__photo"><img src="assets/fotos/salao.jpg" width="646" height="826" fetchpriority="high" alt="Alunos e alunas da Ele &amp; Ela reunidos no salão de musculação da academia"></div>
+            <figcaption class="slab__tag">No salão</figcaption>
+          </figure>
+        </div>
+
+        <div class="slab slab--photo slab--ela">
+          <figure class="slab__in">
+            <div class="slab__photo"><img src="assets/fotos/areia.jpg" width="834" height="606" alt="Turma da Ele &amp; Ela, homens e mulheres, comemorando depois de um treino na areia da praia"></div>
+            <figcaption class="slab__tag">Na areia</figcaption>
+          </figure>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="turmas" id="turmas" aria-labelledby="turmas-titulo">
+    <div class="turmas__art">
+      <figure class="trail">
+        <div class="trail__photo"><img src="assets/fotos/trilha.jpg" width="871" height="653" loading="lazy" decoding="async" alt="Turma da Ele &amp; Ela reunida ao ar livre, ao pôr do sol, num dia de trilha"></div>
+        <figcaption class="etiqueta"><span>Na trilha</span></figcaption>
+      </figure>
+    </div>
+    <div class="turmas__text">
+      <h2 id="turmas-titulo" class="display">Fora do salão <span class="c-ele">também.</span></h2>
+      <p>A turma da Ele &amp; Ela se encontra fora da academia: trilha, treino na areia, gente do bairro se mexendo junto. Quer participar? É só perguntar.</p>
+      <a class="btn btn--secondary" href="https://wa.me/5521983196046?text=Oi%2C%20quero%20saber%20dos%20encontros%20da%20turma." target="_blank" rel="noopener">
+        <span class="btn__label">Perguntar sobre os encontros</span>
+      <span class="sr-only"> (abre em nova aba)</span></a>
+    </div>
+  </section>
+
+  <section class="fecho" id="contato" aria-labelledby="contato-titulo">
+    <div class="fecho__grid">
+      <div class="fecho__head">
+        <h2 id="contato-titulo" class="display">Vem treinar <span class="c-ela">junto.</span></h2>
+        <img class="fecho__mark" src="assets/simbolo-240.png" width="85" height="120" loading="lazy" decoding="async" alt="">
+      </div>
+      <div class="fecho__body">
+        <dl class="rows">
+          <div class="row">
+            <dt class="etiqueta">Planos, horários e modalidades</dt>
+            <dd>Valores, horários e modalidades atualizados, direto com a academia.<br>
+              <a class="row__link" href="https://wa.me/5521983196046?text=Oi%2C%20quero%20saber%20planos%2C%20hor%C3%A1rios%20e%20modalidades%20da%20Ele%20%26%20Ela." target="_blank" rel="noopener">Perguntar planos e horários<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="sr-only"> (abre em nova aba)</span></a></dd>
+          </div>
+          <div class="row">
+            <dt class="etiqueta">Endereço</dt>
+            <dd>Estrada Teodoreto de Camargo, 397, Ilha de Guaratiba, Rio de Janeiro. Telefone e WhatsApp: <a href="tel:+5521983196046">(21) 98319-6046</a></dd>
+          </div>
+        </dl>
+        <div class="actions">
+          <a class="btn btn--primary" href="https://wa.me/5521983196046?text=Oi%2C%20vim%20pelo%20site%20e%20quero%20conhecer%20a%20Ele%20%26%20Ela." target="_blank" rel="noopener">
+            <span class="btn__label">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+              Chamar no WhatsApp
+            </span>
+          <span class="sr-only"> (abre em nova aba)</span></a>
+          <a class="btn btn--inverse" href="https://www.google.com/maps/search/?api=1&amp;query=Estrada+Teodoreto+de+Camargo%2C+397%2C+Ilha+de+Guaratiba%2C+Rio+de+Janeiro" target="_blank" rel="noopener">
+            <span class="btn__label">Ver como chegar</span>
+          <span class="sr-only"> (abre em nova aba)</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <span>Academia Ele &amp; Ela</span>
+  <span>Estrada Teodoreto de Camargo, 397 · Ilha de Guaratiba, Rio de Janeiro</span>
+</footer>
+
+<script>
+  // Parallax leve: as duas faixas se movem em sentidos opostos, seguindo o cursor
+  (function () {
+    var art = document.getElementById('art');
+    var hero = document.querySelector('.hero');
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var fine = window.matchMedia('(pointer: fine)');
+    if (!art || still.matches || !fine.matches) return;
+    var tx = 0, ty = 0, x = 0, y = 0, raf = 0;
+    function tick() {
+      x += (tx - x) * 0.06; y += (ty - y) * 0.06;
+      art.style.setProperty('--px', x.toFixed(4));
+      art.style.setProperty('--py', y.toFixed(4));
+      raf = (Math.abs(tx - x) > 0.001 || Math.abs(ty - y) > 0.001) ? requestAnimationFrame(tick) : 0;
+    }
+    function go() { if (!raf) raf = requestAnimationFrame(tick); }
+    hero.addEventListener('pointermove', function (e) {
+      var r = hero.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      go();
+    });
+    hero.addEventListener('pointerleave', function () { tx = 0; ty = 0; go(); });
+  })();
+</script>
+</body>
+</html>
